@@ -1,0 +1,91 @@
+entity AttributEntity {
+}
+entity AttributDefEntity {
+	 name String,
+     description String,
+     path String,
+     multi Boolean,
+     techOrder Integer,
+     parentId Long
+}
+entity ConstraintEntity {
+	value1 String,
+	value2 String,
+    value3 String
+}
+entity DictionaryEntity {
+	  parentKey String,
+	  key String, 
+	  path String,
+	  name String, 
+	  type  String,
+      version  Integer,
+      creationDate  LocalDate,
+      updateDate LocalDate,
+      description String
+}
+entity LabelEntity {
+}
+entity MappingEntity{
+	path String,
+	order Integer
+}
+entity PropertyEntity{ value String}
+entity ClientEntity{
+	name String,
+    code String
+}
+entity MetadataEntity{
+	  key String, 
+ 	  value String
+}
+entity ConstraintDefEntity{
+ 	name String,
+	key1 String,
+    key2 String,
+    key3 String
+}
+entity MessageEntity{
+	  code String,
+	  lang String,
+	  text String
+}
+entity DictionaryConfigEntity{key String}
+
+relationship ManyToOne{
+	AttributEntity{dictionary} to DictionaryEntity
+}
+relationship ManyToOne{
+	DictionaryConfigEntity{dictionary} to DictionaryEntity
+}
+relationship ManyToOne{
+	DictionaryEntity{client} to ClientEntity
+}
+relationship ManyToOne{
+	AttributEntity{attributDef} to AttributDefEntity
+}
+relationship ManyToOne{
+	ConstraintEntity{attribut1} to AttributEntity
+}
+relationship ManyToOne{
+	LabelEntity{attribut2} to AttributEntity
+}
+relationship ManyToOne{
+	MappingEntity{attribut3} to AttributEntity
+}
+relationship ManyToOne{
+	MetadataEntity{attribut4} to AttributEntity
+}
+relationship ManyToOne{
+	PropertyEntity{attribut5} to AttributEntity
+}
+relationship ManyToOne{
+	ConstraintEntity{constraint} to ConstraintDefEntity
+} 
+relationship ManyToOne{
+	LabelEntity {message} to MessageEntity
+} 
+relationship ManyToOne{
+	MetadataEntity{dictionaryConfig} to DictionaryConfigEntity
+} 
+service all with serviceImpl except MetadataEntity, PropertyEntity , MappingEntity , AttributDefEntity
