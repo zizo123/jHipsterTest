@@ -21,9 +21,13 @@ import com.sid.service.ClientEntityService;
 import com.sid.web.rest.errors.BadRequestAlertException;
 import com.sid.web.rest.util.HeaderUtil;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 /**
  * REST controller for managing ClientEntity.
  */
+@Api("This is my Client Controller")
 @RestController
 @RequestMapping("/api")
 public class ClientEntityResource {
@@ -83,6 +87,7 @@ public class ClientEntityResource {
      *
      * @return the ResponseEntity with status 200 (OK) and the list of clientEntities in body
      */
+    @ApiOperation(value = "This will get a list of clients.", notes = "These are my notes about the API.")
     @GetMapping("/client-entities")
     public List<ClientEntity> getAllClientEntities() {
         log.debug("REST request to get all ClientEntities");
